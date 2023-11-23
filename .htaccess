@@ -1,0 +1,17 @@
+php_flag display_errors on
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^books/([0-9]+)$ controller/book.php?bookid=$1 [L]
+RewriteRule ^books/complete$ controller/book.php?completed=Y [L]
+RewriteRule ^books/incomplete$ controller/book.php?completed=Y [L]
+RewriteRule ^books/page/([0-9]+)$ controller/book.php?page=$1 [L]
+RewriteRule ^books$ controller/book.php [L]
+
+RewriteRule ^users$ controller/users.php [L]
+
+RewriteRule ^sessions/([0-9]+)$ controller/sessions.php?sessionid=$1 [L]
+RewriteRule ^sessions$ controller/sessions.php [L]
